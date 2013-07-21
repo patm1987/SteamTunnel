@@ -2,6 +2,16 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Windows Desktop
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SteamTunnel", "SteamTunnel\SteamTunnel.vcxproj", "{F1B8BDCC-7C85-493C-B4B0-C05234C2B724}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0FB505B5-C798-46C0-A059-B66F956B85C9} = {0FB505B5-C798-46C0-A059-B66F956B85C9}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Math", "Math\Math.vcxproj", "{0FB505B5-C798-46C0-A059-B66F956B85C9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CatmullRomTest", "CatmullRomTest\CatmullRomTest.vcxproj", "{64025B56-63FD-4296-9991-CE02356BBE2E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0FB505B5-C798-46C0-A059-B66F956B85C9} = {0FB505B5-C798-46C0-A059-B66F956B85C9}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +23,14 @@ Global
 		{F1B8BDCC-7C85-493C-B4B0-C05234C2B724}.Debug|Win32.Build.0 = Debug|Win32
 		{F1B8BDCC-7C85-493C-B4B0-C05234C2B724}.Release|Win32.ActiveCfg = Release|Win32
 		{F1B8BDCC-7C85-493C-B4B0-C05234C2B724}.Release|Win32.Build.0 = Release|Win32
+		{0FB505B5-C798-46C0-A059-B66F956B85C9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0FB505B5-C798-46C0-A059-B66F956B85C9}.Debug|Win32.Build.0 = Debug|Win32
+		{0FB505B5-C798-46C0-A059-B66F956B85C9}.Release|Win32.ActiveCfg = Release|Win32
+		{0FB505B5-C798-46C0-A059-B66F956B85C9}.Release|Win32.Build.0 = Release|Win32
+		{64025B56-63FD-4296-9991-CE02356BBE2E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{64025B56-63FD-4296-9991-CE02356BBE2E}.Debug|Win32.Build.0 = Debug|Win32
+		{64025B56-63FD-4296-9991-CE02356BBE2E}.Release|Win32.ActiveCfg = Release|Win32
+		{64025B56-63FD-4296-9991-CE02356BBE2E}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
