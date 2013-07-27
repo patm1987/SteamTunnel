@@ -2,6 +2,7 @@
 
 #include <cassert>
 
+//! @brief	how tight is the curve by default
 const float CatmullRom::kDefaultTightness = .5f;
 
 CatmullRom::CatmullRom(void) :
@@ -15,17 +16,28 @@ CatmullRom::~CatmullRom(void)
 {
 }
 
+/*!
+ * @brief	adds the given control point to the spline
+ * @param	controlPoint the control point to add
+ */
 void CatmullRom::AddControlPoint(const Eigen::Vector3f &controlPoint)
 {
 	m_controlPoints.push_back(controlPoint);
 }
 
+/*!
+ * @brief	configures the @a tightness of the catmull rom hermite spline
+ */
 void CatmullRom::SetTightness(float tightness)
 {
 	assert(tightness >= 0.f && tightness <= 1.f);
 	m_tightness = tightness;
 }
 
+/*!
+ * @brief	evaluates this curve at @a t
+ * @param	t the amoun along the curve to evaluate. t e [0, count - 1]
+ */
 Eigen::Vector3f CatmullRom::Evaluate(float t)
 {
 	if (m_controlPoints.size() <= 0)
@@ -60,6 +72,13 @@ Eigen::Vector3f CatmullRom::Evaluate(float t)
 	}
 }
 
+/*!
+ * @brief	evaluates the curve between two control points
+ * @param	p0 the start of the curve subset
+ * @param	p1 the end of the curve subset
+ * @param	amount a value between 0 and 1 describing how far along p0 and p1
+ *			we need to evaluate
+ */
 Eigen::Vector3f CatmullRom::EvaluateSubset(int p0, int p1, float amount)
 {
 	assert(p0 >= 0 && p0 < int(m_controlPoints.size()));
@@ -86,18 +105,22 @@ Eigen::Vector3f CatmullRom::EvaluateSubset(int p0, int p1, float amount)
 		+ hermiteVector[3] * tangent1;
 }
 
+/*!
+ * @breif	compute the tangent for the given @a index
+ * @param	index the index for which we'll compute the tangent
+ * @note	to attempt to maintain a smooth curve, endpoints are currently
+ *			computed as p_0 = 2* (p_1 - p_0) and p_i = 2*(p_i - p_i-1)
+ */
 Eigen::Vector3f CatmullRom::ComputeTangent(int index)
 {
-	// todo: leaving
-	// have to replace tangent computation with 2* (pi+1 pi) and 2* (pi-1 pi) for edge vertices (not just same vertex twice!)
-	// see notes
 	if (index <= 0)
 	{
-		return m_controlPoints[0];
+		return 2.f * (m_controlPoints[1] - m_controlPoints[0]);
 	}
 	else if (index >= int(m_controlPoints.size()) - 1)
 	{
-		return m_controlPoints[m_controlPoints.size() - 1];
+		int lastIndex = m_controlPoints.size() - 1;
+		return 2.f * (m_controlPoints[lastIndex] - m_controlPoints[lastIndex - 1]);
 	}
 	else
 	{
